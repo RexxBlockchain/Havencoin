@@ -1,0 +1,30 @@
+body {
+    background-color: #f0f0f0; /* Light grey background for better contrast */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    text-align: center;
+}
+
+header img.profile-pic {
+    width: 200px; /* Set a fixed size for the profile picture */
+    height: 200px;
+    border-radius: 50%; /* Make the image round */
+    object-fit: cover; /* Ensure the image covers the area without distorting aspect ratio */
+    border: 3px solid #333; /* Add a dark border for contrast */
+}
+
+header p {
+    color: #333; /* Dark text color for better readability */
+    font-size: 18px; /* Slightly larger text for visibility */
+    padding: 20px;
+    background-color: #fff; /* White background for the text */
+    border-radius: 10px; /* Rounded corners for the paragraph block */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Soft shadow for 3D effect */
+}

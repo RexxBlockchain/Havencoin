@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Havencoin</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = Telegram.WebApp.initDataUnsafe.user;
+            if (user && user.id) {
+                fetch(`/get_profile_picture?user_id=${user.id}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.photo_url) {
+                            const profileImage = document.getElementById('profile-picture');
+                            profileImage.onload = () => {
+                                document.getElementById('loading-container').style.display = 'none';
+                                document.getElementById('header-container').style.display = 'flex';
+                                document.getElementById('task-bar').style.display = 'flex';
+                            };
+                            profileImage.src = data.photo_url;
+                            document.getElementById('username').textContent = user.username;
+                        } else {
+                            throw new Error('Failed to get profile picture');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching profile picture:', error);
+                        document.getElementById('loading-container').style.display = 'none';
+                    });
+            } else {
+                console.error('User not found');
+                document.getElementById('loading-container').style.display = 'none';
+            }
+        });
+    </script>
+</head>
+<body>
+    <div id="loading-container" style="display: flex; justify-content: center; align-items: center; height: 100vh; width: 100vw; position: fixed; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.8); z-index: 9999;">
+        <div class="skeleton-circle"></div>
+        <div class="skeleton-bar"></div>
+        <div class="skeleton-text"></div>
+        <div class="skeleton-bar"></div>
+    </div>
+    <div class="header" id="header-container" style="display: none;">
+        <div class="circle" id="profile-container">
+            <img id="profile-picture" src="" alt="Profile Picture">
+        </div>
+        <div class="username" id="username"></div>
+        <div class="balance-bar">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
+            <span class="balance-amount" id="balance-amount">0</span>
+        </div>
+    </div>
+    <div class="task-bar" id="task-bar" style="display: none;">
+        <div class="task" data-link="https://t.me/havencoin_fam" data-task="Join Telegram">
+            <i class="fab fa-telegram-plane"></i>
+            <span>Join Telegram</span>
+            <button class="task-button" data-task="Join Telegram">Join</button>
+        </div>
+        <div class="task" data-link="https://x.com/havencoin_fam?t=zxwOej4NfpqUoBcrZB3iPQ&s=09" data-task="Follow Twitter">
+            <i class="fab fa-twitter"></i>
+            <span>Follow Twitter</span>
+            <button class="task-button" data-task="Follow Twitter">Follow</button>
+        </div>
+        <div class="task" data-link="https://youtube.com/@havencoin_fam?si=EV1YaNtVrULyO6yS" data-task="Subscribe YouTube">
+            <i class="fab fa-youtube"></i>
+            <span>Subscribe YouTube</span>
+            <button class="task-button" data-task="Subscribe YouTube">Subscribe</button>
+        </div>
+        <div class="task" data-link="https://discord.com/invite/gUhDWenJ" data-task="Join Discord">
+            <i class="fab fa-discord"></i>
+            <span>Join Discord</span>
+            <button class="task-button" data-task="Join Discord">Join</button>
+        </div>
+    </div>
+    <div class="footer">
+        <button>
+            <i class="fas fa-home icon"></i>
+            <span class="label">Home</span>
+        </button>
+        <button>
+            <i class="fas fa-tasks icon"></i>
+            <span class="label">Task</span>
+        </button>
+        <button>
+            <i class="fas fa-user-friends icon"></i>
+            <span class="label">Friends</span>
+        </button>
+    </div>
+    <div class="popup" id="popup" style="display: none;">
+        <p id="popup-message"></p>
+        <button id="popup-close">Close</button>
+    </div>
+</body>
+</html>
