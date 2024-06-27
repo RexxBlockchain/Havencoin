@@ -1,4 +1,5 @@
-# config.py
+import os
+
 class Config:
-    MONGODB_URI = "mongodb+srv://likhonsheikh5:hO2yUvW3bEBjoV7h@cluster0.vnbo62a.mongodb.net/"
-    TELEGRAM_BOT_TOKEN = "7330752870:AAEhJrg6dnlPtpjUQoaz0NqiNzD6MOqdSwA"
+    MONGODB_URI = os.getenv("MONGODB_URI", "default_mongodb_uri")
+    TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "default_telegram_bot_token")
