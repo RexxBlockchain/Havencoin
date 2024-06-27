@@ -1,6 +1,6 @@
 # Havencoin
 
-![Havencoin Banner](git/img/IMG_6932.PNG)
+![Havencoin Banner](assets/img/IMG_6932.PNG)
 
 Havencoin ($HVN) is a play-to-earn token that's part of the TON (The Open Network) family. It has been capturing attention thanks to its addictive gameplay and ease of use through the Telegram app.
 
@@ -24,7 +24,7 @@ Begin your Havencoin journey by following these steps:
 
 ## 🛠 Developer Setup
 
-To run Havencoin locally or contribute to its development, follow these setup instructions found in the [Developer Setup Guide](instructions/README.md).
+To run Havencoin locally or contribute to its development, follow these setup instructions found in the [Developer Setup Guide](instructions/developer.md).
 
 ## 💖 Support Us
 
