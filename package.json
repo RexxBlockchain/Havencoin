@@ -1,0 +1,15 @@
+{
+  "name": "python-flask",
+  "version": "1.0.0",
+  "description": "A simple Python Flask app on Glitch",
+  "scripts": {
+    "start": "python app.py"
+  },
+  "dependencies": {
+    "flask": "*"
+  },
+  "engines": {
+    "python": "3.8"
+  },
+  "license": "MIT"
+}
